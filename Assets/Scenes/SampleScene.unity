@@ -132435,6 +132435,7 @@ MonoBehaviour:
   fullHeart: {fileID: -234154193, guid: ae7be84240427584bbf3874c2fe69237, type: 3}
   emptyHeart: {fileID: 1578281373, guid: ae7be84240427584bbf3874c2fe69237, type: 3}
   tr: {fileID: 85453380}
+  dashEffect: {fileID: 6369824783873563448, guid: 1f271bcf4a459d04388ce37648d8aab8, type: 3}
 --- !u!114 &85453379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140057,14 +140058,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 85453370}
-  speed: 7
-  normalSpeed: 7
+  speed: 5
+  normalSpeed: 5
   AggreDistance: 8
-  damage: 1
+  enemyDamage: 1
   attackRange: 0
   timeBtwAttack: 2
   startTimeBtwAttack: 2
-  health: 5
+  enemyHealth: 0
 --- !u!61 &1012797980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140678,7 +140679,7 @@ MonoBehaviour:
     m_Bits: 64
   startTimeBtwAttack: 0.25
   attackRange: 1
-  damage: 10
+  damage: 5
 --- !u!1 &1814787592
 GameObject:
   m_ObjectHideFlags: 0

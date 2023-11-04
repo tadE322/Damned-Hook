@@ -12,7 +12,7 @@ public class HandSword : MonoBehaviour
     public LayerMask whatIsSolid;
     public float startTimeBtwAttack;
     public float attackRange;
-    public int damage;
+    public int damage = 5;
 
     private void Start()
     {

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
     [SerializeField] private float distance;
     [SerializeField] private int damage;
     [SerializeField] private LayerMask whatIsSolid;

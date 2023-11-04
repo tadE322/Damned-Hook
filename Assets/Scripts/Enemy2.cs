@@ -10,14 +10,14 @@ public class Enemy2 : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float AggreDistance;
-    [SerializeField] private int damage = 5;
+    [SerializeField] private int enemyDamage = 1;
     private Animator anim;
     private SpriteRenderer flip;
     public float attackRange;
     private Rigidbody2D rb;
     public float timeBtwAttack = 2.0f;
     public float startTimeBtwAttack = 2.0f;
-    public int health;
+    public int enemyHealth;
 
 
 
@@ -68,7 +68,7 @@ public class Enemy2 : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
 
-        if(health <= 0 )
+        if(enemyHealth <= 0 )
         {
             Destroy(gameObject);
         }
@@ -77,13 +77,13 @@ public class Enemy2 : MonoBehaviour
 
     public void Attack()
     {
-        PlayerController.health -= damage;
+        PlayerController.health -= enemyDamage;
         timeBtwAttack = startTimeBtwAttack;
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        enemyHealth -= damage;
     }
 }
 

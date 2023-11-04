@@ -32,8 +32,6 @@ public class Animations : MonoBehaviour
       //  }
         anim.SetFloat("Horizontal", Camera.main.ScreenToWorldPoint(Input.mousePosition).x - player.transform.position.x);
         anim.SetFloat("Vertical", Camera.main.ScreenToWorldPoint(Input.mousePosition).y - player.transform.position.y);
-        anim.SetFloat("MouseHorizontal", Camera.main.ScreenToWorldPoint(Input.mousePosition).x - player.transform.position.x);
-        anim.SetFloat("MouseVertical", Camera.main.ScreenToWorldPoint(Input.mousePosition).y - player.transform.position.y);
     }
 
 }

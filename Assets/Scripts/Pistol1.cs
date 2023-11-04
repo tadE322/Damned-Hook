@@ -12,6 +12,7 @@ public class Pistol1 : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shotPoint;
     public float startTimeBtwShoot;
+
     
 
 
@@ -39,7 +40,7 @@ public class Pistol1 : MonoBehaviour
             }
         }
         else
-        {
+        { 
             timeBtwShoot -= Time.deltaTime;
         }
     }

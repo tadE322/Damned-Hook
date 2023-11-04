@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public static float speed = 8.0f;
     public static Vector2 direction;
-    public static int health = 10;
+    public static int health = 3;
 
     public GameObject crossHair;
     public GameObject player;
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public TrailRenderer tr;
+    public GameObject dashEffect;
 
     private void Start()
     {
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        Instantiate(dashEffect, transform.position, Quaternion.identity);
         rb.velocity = new Vector2(direction.x * dashingPower, direction.y * dashingPower);
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
