@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Название дичайший кринж, название класса должно отображать функционал, номера классов это мегазашквар
 public class Enemy2 : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -17,15 +18,21 @@ public class Enemy2 : MonoBehaviour
     private Rigidbody2D rb;
     public float timeBtwAttack = 2.0f;
     public float startTimeBtwAttack = 2.0f;
+
+    //Пишете систему здоровья 3 раза подряд, так нельзя, создавайте класс например Unit и там пишите систему здоровья, врагов и игрока наследуйте от Unit,
+    //функционал здоровья у игрока и у врагов должен быть одинаковый
+
+    //Не делайте ХП публичным для редактиновения, чтобы нельзя было поменять ХП, не проведя логику смерти и пр
     public int health;
 
-
+    public int Health { get; private set; }
 
     private float distance;
 
 
     private void Start()
     {
+        //Старайтесь такое не делать, не надо получать компоненты, сериализуйте как в делали в гейм обжектом, сцена будет быстрее грузится
         anim = GetComponent<Animator>();
         flip = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>(); 
@@ -33,6 +40,7 @@ public class Enemy2 : MonoBehaviour
 
     private void Update()
     {
+        //Вы занимаетесь перемещениями ФИЗИЧЕСКИХ обьеков(RigidBody) в Update(), физика должна обновляться в FixedUpdate(), поэтому у вас камера дергается
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
@@ -68,6 +76,7 @@ public class Enemy2 : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
 
+        //зачем проверять ХП в апдейте, проверяйте после  получения урона, для этого же вы и писали TakeDamage()
         if(health <= 0 )
         {
             Destroy(gameObject);

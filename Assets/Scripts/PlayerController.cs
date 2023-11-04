@@ -14,13 +14,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashingTime = 0.2f;
     [SerializeField] private float dashingCooldown = 1f;
 
+    //Статические переменные у игрока на обьекте это кринж, нельзя так, тоже самое что с врагом, наследуйте от Unit и делайте нормально
     public static float speed = 8.0f;
     public static Vector2 direction;
+    //У игрока нет метода получения урона, тупо меняете публичную переменную, кринж, делайте хотя бы как у врага
     public static int health = 10;
 
     public GameObject crossHair;
     public GameObject player;
     public int numOfHearts;
+    //Управление UI в компоненте персонажа, это вообще фу фу фу
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
+        //Опять провека ХП в апдейте, делайте при получении урона, для того и есть методы
         if (health <= 0)
         {
             player.SetActive(false);
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Вот тут пральна, физика в FixedUpdate
     private void FixedUpdate()
     {
         if (isDashing)
