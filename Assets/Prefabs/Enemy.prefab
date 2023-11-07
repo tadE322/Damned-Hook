@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7656434332464506980}
   - component: {fileID: 768703580032385839}
   - component: {fileID: 451555936944793477}
-  - component: {fileID: 5712122643107973447}
+  - component: {fileID: 1779109862223977108}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2446273534198314375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.29, y: 0.29, z: 0}
+  m_LocalPosition: {x: 5.94, y: -0.78, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee39584203bf864bb70777397c3ff06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 7058783318789918381, guid: a176e2981eab4324fa57b1f34639d170, type: 3}
   speed: 15
   acceleration: 15
   normalSpeed: 200
@@ -162,8 +162,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5712122643107973447
-CircleCollider2D:
+--- !u!70 &1779109862223977108
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -194,6 +194,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5034583}
-  serializedVersion: 2
-  m_Radius: 0.16675848
+  m_Offset: {x: 0.017354608, y: -0.049460024}
+  m_Size: {x: 0.35788703, y: 0.90107995}
+  m_Direction: 0

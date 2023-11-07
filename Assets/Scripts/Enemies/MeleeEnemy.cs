@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 //Название дичайший кринж, название класса должно отображать функционал, номера классов это мегазашквар
-public class Enemy2 : MonoBehaviour
+public class MeleeEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private float speed;
@@ -47,6 +47,7 @@ public class Enemy2 : MonoBehaviour
         anim = GetComponent<Animator>();
         flip = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player");
 
         pushTimer = timeBtwPyshesMax;
     }
@@ -68,11 +69,6 @@ public class Enemy2 : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
 
-        //зачем проверять ХП в апдейте, проверяйте после  получения урона, для этого же вы и писали TakeDamage()
-        if(health <= 0 )
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void FixedUpdate()
@@ -84,7 +80,7 @@ public class Enemy2 : MonoBehaviour
         if (distance < AggreDistance)
         {
             //Тут ты зачем-то пересчитывал направление врага, я поправил
-            rb.velocity = Vector2.Lerp(rb.velocity, direction * speed * Time.fixedDeltaTime, acceleration * Time.fixedDeltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, speed * Time.fixedDeltaTime * direction, acceleration * Time.fixedDeltaTime);
 
             if (pushTimer < 0)
             {
@@ -106,6 +102,7 @@ public class Enemy2 : MonoBehaviour
         else
         {
             anim.SetBool("isClose", false);
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -114,7 +111,7 @@ public class Enemy2 : MonoBehaviour
         //Добавил проверку на дистанцию для атаки по игроку, а то кринж
         if (Vector2.Distance(transform.position, player.transform.position) <= attackRange)
         {
-            PlayerController.health -= damage;
+            player.GetComponent<PlayerController>().ChangeHealth(-damage);
             timeBtwAttack = startTimeBtwAttack;
         }
     }
@@ -123,6 +120,13 @@ public class Enemy2 : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} получает {damage} урона", gameObject);
         health -= damage;
+
+        //зачем проверять ХП в апдейте, проверяйте после  получения урона, для этого же вы и писали TakeDamage() --- ИСПРАВИЛ ---
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            SpawnEnemy.nowTheEnemies--;
+        }
     }
 }
 
