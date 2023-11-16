@@ -104,7 +104,7 @@ MonoBehaviour:
   speed: 15
   acceleration: 15
   normalSpeed: 200
-  AggreDistance: 8
+  AggreDistance: 100
   damage: 1
   pushPower: 50
   timeBtwPushesMin: 1
@@ -113,6 +113,7 @@ MonoBehaviour:
   attackRange: 1
   timeBtwAttack: 2
   startTimeBtwAttack: 2
+  coin: {fileID: 4428075457399157394, guid: d0608174ac2b1d84885f6e7b758ecb61, type: 3}
   health: 15
 --- !u!95 &768703580032385839
 Animator:
@@ -194,6 +195,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017354608, y: -0.049460024}
-  m_Size: {x: 0.35788703, y: 0.90107995}
+  m_Offset: {x: 0.017354608, y: -0.3210565}
+  m_Size: {x: 0.35788703, y: 0.35788703}
   m_Direction: 0

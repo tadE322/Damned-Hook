@@ -18,13 +18,15 @@ public class PlayerController : MonoBehaviour
     //Статические переменные у игрока на обьекте это кринж, нельзя так, тоже самое что с врагом, наследуйте от Unit и делайте нормально
 
     [Header("Player")]
-    [SerializeField] private int health = 3;
+    [SerializeField] private int maxHealth = 3;
+    private int currentHealth;
     public static float speed = 8.0f;
     public static Vector2 direction;
     private Rigidbody2D rb;
     public GameObject player;
     public GameObject shieldEffect;
     public Shield shieldTimer;
+    public HealthBar healthBar;
 
     //У игрока нет метода получения урона, тупо меняете публичную переменную, кринж, делайте хотя бы как у врага --- ИСПРАВИЛ ---
 
@@ -33,17 +35,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePosition;
     public GameObject crossHair;
 
-    //Управление UI в компоненте персонажа, это вообще фу фу фу
 
-    [Header("HeartsUI")]
-    public int numOfHearts;
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update()
@@ -61,29 +59,7 @@ public class PlayerController : MonoBehaviour
             crossHair.transform.localPosition = aim;
         }
 
-        if (health > numOfHearts)
-        {
-            health = numOfHearts;
-        }
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < Mathf.RoundToInt(health))
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
+        
     }
 
     //Вот тут пральна, физика в FixedUpdate
@@ -136,13 +112,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!shieldEffect.activeInHierarchy || shieldEffect.activeInHierarchy && healthValue > 0)
         {
-            health += healthValue;
+            currentHealth += healthValue;
         }
         else if (shieldEffect.activeInHierarchy && healthValue < 0)
         {
             shieldTimer.ReduceTime(healthValue);
         }
-        if (health <= 0)
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             player.SetActive(false);
         }

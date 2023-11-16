@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   distance: 0
-  damage: 5
+  damage: 15
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 64

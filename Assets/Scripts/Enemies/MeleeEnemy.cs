@@ -21,14 +21,14 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private float pushSpread = 0.15f;
     private float pushTimer = 1f;
 
-
+    [Header("Other")]
     private Animator anim;
     private SpriteRenderer flip;
-    [Header("Other")]
-    public float attackRange; //почему не используется?
+    public float attackRange; 
     private Rigidbody2D rb;
     public float timeBtwAttack = 2.0f;
     public float startTimeBtwAttack = 2.0f;
+    public GameObject coin;
 
     //Пишете систему здоровья 3 раза подряд, так нельзя, создавайте класс например Unit и там пишите систему здоровья, врагов и игрока наследуйте от Unit,
     //функционал здоровья у игрока и у врагов должен быть одинаковый
@@ -48,7 +48,6 @@ public class MeleeEnemy : MonoBehaviour
         flip = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-
         pushTimer = timeBtwPyshesMax;
     }
 
@@ -125,6 +124,7 @@ public class MeleeEnemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            coin.GetComponent<Coin>().CoinDrop(transform.position);
             SpawnEnemy.nowTheEnemies--;
         }
     }
